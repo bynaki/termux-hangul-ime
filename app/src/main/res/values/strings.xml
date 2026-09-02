@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">모아쓰기</string>
+    <string name="ime_label">모아쓰기</string>
+    <string name="subtype_ko">두벌식</string>
+
+    <string name="hint_korean">한글 · Enter 전송 · Shift+Enter 줄바꿈 · Esc 취소 · %1$s 한/영</string>
+    <string name="hint_latin">영문 · Enter 전송 · Shift+Enter 줄바꿈 · Esc 취소 · %1$s 한/영</string>
+
+    <string name="setup_intro">Termux는 물리 키보드로 한글을 받지 못합니다. 이 키보드를 선택해 두면 핫키로 입력 팝업을 띄우고, 작성한 문장을 Enter로 Termux에 한 번에 넣습니다.</string>
+
+    <string name="status_disabled">① 아직 키보드가 켜져 있지 않습니다.</string>
+    <string name="status_enabled">② 켜져 있지만 지금 쓰는 키보드는 아닙니다.</string>
+    <string name="status_selected">✓ 이 키보드를 쓰는 중입니다.</string>
+
+    <string name="enable_keyboard">① 키보드 활성화</string>
+    <string name="pick_keyboard">② 이 키보드 선택</string>
+    <string name="change_hotkey">③ 핫키 변경</string>
+    <string name="hotkey_label">현재 핫키</string>
+    <string name="send_enter">전송 후 Enter 자동 입력 (명령을 바로 실행)</string>
+    <string name="test_hint">여기에 입력해 동작을 확인하세요</string>
+
+    <string name="hotkey_title">핫키 등록</string>
+    <string name="hotkey_intro">팝업을 열 키를 지금 누르세요. 누른 즉시 저장됩니다.\n\n아무 반응이 없는 키는 시스템이 먼저 가져가는 키라, 이 앱에서 쓸 수 없습니다. 다른 키를 눌러 보세요.</string>
+    <string name="hotkey_current">현재 핫키: %1$s</string>
+    <string name="hotkey_saved">저장됨: %1$s</string>
+    <string name="done">완료</string>
+</resources>
