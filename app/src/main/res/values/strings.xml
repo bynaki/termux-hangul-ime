@@ -7,6 +7,10 @@
     <string name="hint_korean">한글 · Enter 전송 · Shift+Enter 줄바꿈 · Esc 취소 · %1$s 한/영</string>
     <string name="hint_latin">영문 · Enter 전송 · Shift+Enter 줄바꿈 · Esc 취소 · %1$s 한/영</string>
 
+    <string name="nokeys_title">물리 키보드가 연결돼 있지 않습니다</string>
+    <string name="nokeys_body">모아쓰기는 물리 키보드로만 입력합니다. 화면 자판으로 쓰려면 다른 키보드로 전환하세요.</string>
+    <string name="switch_keyboard">키보드 전환</string>
+
     <string name="setup_intro">Termux는 물리 키보드로 한글을 받지 못합니다. 이 키보드를 선택해 두면 핫키로 입력 팝업을 띄우고, 작성한 문장을 Enter로 Termux에 한 번에 넣습니다.</string>
 
     <string name="status_disabled">① 아직 키보드가 켜져 있지 않습니다.</string>

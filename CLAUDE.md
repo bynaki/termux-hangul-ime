@@ -92,4 +92,6 @@ That opens the popup with Shift+Space, types 안녕, and commits. Pair it with `
 
 ## Known gap
 
-The IME draws no soft keyboard, so if it is the selected input method and the hardware keyboard is detached, tapping a text field shows nothing — the user must switch input methods to type. A fallback view (shown when `Configuration.keyboard == KEYBOARD_NOKEYS`) offering a "switch keyboard" button would close this.
+The IME still draws no soft keyboard, so with the hardware keyboard detached nothing can be typed through it. What used to be a dead end is now signposted: `popup_input.xml` holds two layers under one root, and `onEvaluateInputViewShown()` returns `popupActive || !hasHardwareKeyboard()`, so when `Configuration.keyboard == KEYBOARD_NOKEYS` the window opens on `nokeys_layer` — an explanation plus a button calling `showInputMethodPicker()`. `onConfigurationChanged` closes any open popup on detach with `hideWindow = false`, because hiding the window there would take the explanation away with it.
+
+Note what this means for the invariant above: the input view is now shown while the popup is closed. Key handling is unaffected — `popupActive` is still false, so `onKeyDown` consumes nothing. Any change here must keep those two conditions separate.

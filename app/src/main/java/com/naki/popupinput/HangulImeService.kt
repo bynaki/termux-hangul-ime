@@ -1,5 +1,6 @@
 package com.naki.popupinput
 
+import android.content.res.Configuration
 import android.inputmethodservice.InputMethodService
 import android.os.Build
 import android.text.Spannable
@@ -9,6 +10,9 @@ import android.text.style.UnderlineSpan
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.TextView
 import com.naki.popupinput.hangul.DubeolsikKeyMap
 
@@ -36,6 +40,8 @@ class HangulImeService : InputMethodService() {
 
     private var bufferView: TextView? = null
     private var hintView: TextView? = null
+    private var popupLayer: View? = null
+    private var noKeysLayer: View? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -46,14 +52,49 @@ class HangulImeService : InputMethodService() {
         val root = layoutInflater.inflate(R.layout.popup_input, null)
         bufferView = root.findViewById(R.id.buffer)
         hintView = root.findViewById(R.id.hint)
+        popupLayer = root.findViewById(R.id.popup_layer)
+        noKeysLayer = root.findViewById(R.id.nokeys_layer)
+        root.findViewById<Button>(R.id.switch_keyboard).setOnClickListener {
+            (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).showInputMethodPicker()
+        }
+        updateLayers()
         render()
         return root
     }
 
-    // 물리 키보드가 붙어 있으면 IME 창은 기본적으로 뜨지 않는다. 팝업이 열린 동안만 강제로 띄운다.
+    /**
+     * 물리 키보드가 붙어 있으면 IME 창은 기본적으로 뜨지 않으므로, 팝업이 열린 동안만 강제로 띄운다.
+     *
+     * 반대로 물리 키보드가 없으면 이 입력기로는 한 글자도 칠 수 없다. 그때도 창을 띄워
+     * [R.id.nokeys_layer]로 상황과 빠져나갈 방법을 보여준다. 아무것도 뜨지 않으면 사용자는
+     * 입력기를 바꿀 방법조차 화면에서 찾지 못한다.
+     */
     override fun onEvaluateInputViewShown(): Boolean {
         super.onEvaluateInputViewShown()
-        return popupActive
+        return popupActive || !hasHardwareKeyboard()
+    }
+
+    override fun onStartInputView(info: EditorInfo?, restarting: Boolean) {
+        super.onStartInputView(info, restarting)
+        updateLayers()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        // 키보드를 뽑은 순간 조합 중이던 팝업은 더 이상 이어갈 수 없다. 창은 그대로 두고
+        // 안내 화면으로 바꾼다 (여기서 창까지 내리면 안내를 볼 기회가 사라진다).
+        if (!hasHardwareKeyboard()) closePopup(hideWindow = false)
+        updateLayers()
+        updateInputViewShown()
+    }
+
+    private fun hasHardwareKeyboard(): Boolean =
+        resources.configuration.keyboard != Configuration.KEYBOARD_NOKEYS
+
+    private fun updateLayers() {
+        val noKeys = !hasHardwareKeyboard()
+        popupLayer?.visibility = if (noKeys) View.GONE else View.VISIBLE
+        noKeysLayer?.visibility = if (noKeys) View.VISIBLE else View.GONE
     }
 
     override fun onEvaluateFullscreenMode(): Boolean = false

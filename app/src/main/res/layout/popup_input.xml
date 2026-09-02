@@ -1,27 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+  IME 입력 뷰. 두 겹 중 하나만 보인다.
+  - popup_layer : 물리 키보드로 조합 중인 버퍼 (평소)
+  - nokeys_layer: 물리 키보드가 없어 입력할 수 없을 때의 안내
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="#FF000000"
-    android:padding="12dp">
+    android:background="#FF000000">
 
-    <TextView
-        android:id="@+id/buffer"
+    <LinearLayout
+        android:id="@+id/popup_layer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minLines="2"
-        android:maxLines="8"
-        android:scrollbars="vertical"
-        android:fontFamily="monospace"
-        android:textSize="18sp"
-        android:textColor="#FFFFFFFF" />
+        android:orientation="vertical"
+        android:padding="12dp">
 
-    <TextView
-        android:id="@+id/hint"
+        <TextView
+            android:id="@+id/buffer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="2"
+            android:maxLines="8"
+            android:scrollbars="vertical"
+            android:fontFamily="monospace"
+            android:textSize="18sp"
+            android:textColor="#FFFFFFFF" />
+
+        <TextView
+            android:id="@+id/hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:textSize="11sp"
+            android:textColor="#B3FFFFFF" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/nokeys_layer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:textSize="11sp"
-        android:textColor="#B3FFFFFF" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nokeys_title"
+            android:textSize="15sp"
+            android:textColor="#FFFFFFFF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="6dp"
+            android:text="@string/nokeys_body"
+            android:textSize="12sp"
+            android:textColor="#B3FFFFFF" />
+
+        <Button
+            android:id="@+id/switch_keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/switch_keyboard" />
+    </LinearLayout>
+</FrameLayout>
