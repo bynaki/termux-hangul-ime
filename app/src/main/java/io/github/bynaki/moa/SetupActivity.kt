@@ -1,4 +1,4 @@
-package com.naki.popupinput
+package io.github.bynaki.moa
 
 import android.app.Activity
 import android.content.Intent

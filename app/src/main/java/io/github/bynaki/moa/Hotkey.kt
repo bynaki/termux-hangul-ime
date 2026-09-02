@@ -1,4 +1,4 @@
-package com.naki.popupinput
+package io.github.bynaki.moa
 
 import android.view.KeyEvent
 

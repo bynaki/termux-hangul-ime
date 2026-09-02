@@ -17,7 +17,7 @@ JAVA_HOME=/opt/homebrew/opt/openjdk@17 ./gradlew test
 Run one test class, or one method (test names are Korean and contain spaces, so quote them):
 
 ```bash
-JAVA_HOME=/opt/homebrew/opt/openjdk@17 ./gradlew :app:testDebugUnitTest --tests "com.naki.popupinput.hangul.HangulAutomatonTest.겹받침을 조합한다"
+JAVA_HOME=/opt/homebrew/opt/openjdk@17 ./gradlew :app:testDebugUnitTest --tests "io.github.bynaki.moa.hangul.HangulAutomatonTest.겹받침을 조합한다"
 ```
 
 `adb` is not on `PATH` either — it lives at `/opt/homebrew/share/android-commandlinetools/platform-tools/adb`.

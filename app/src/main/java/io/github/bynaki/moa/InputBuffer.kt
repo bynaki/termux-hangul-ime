@@ -1,6 +1,6 @@
-package com.naki.popupinput
+package io.github.bynaki.moa
 
-import com.naki.popupinput.hangul.HangulAutomaton
+import io.github.bynaki.moa.hangul.HangulAutomaton
 
 /**
  * 팝업이 들고 있는 편집 버퍼.

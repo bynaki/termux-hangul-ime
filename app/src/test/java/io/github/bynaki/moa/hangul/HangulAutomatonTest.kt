@@ -1,4 +1,4 @@
-package com.naki.popupinput.hangul
+package io.github.bynaki.moa.hangul
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.naki.popupinput
+package io.github.bynaki.moa
 
 import android.content.Context
 import android.view.KeyEvent
@@ -6,7 +6,7 @@ import android.view.KeyEvent
 /** 설정값. 개수가 적어 SharedPreferences 하나로 충분하다. */
 class Prefs(context: Context) {
 
-    private val prefs = context.getSharedPreferences("popup_input", Context.MODE_PRIVATE)
+    private val prefs = context.getSharedPreferences("moa", Context.MODE_PRIVATE)
 
     /** 팝업을 여는 키. 기본값은 안드로이드에서 IME 전환에 흔히 쓰이는 Shift+Space. */
     var hotkeyKeyCode: Int

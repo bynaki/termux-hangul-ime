@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.naki.popupinput"
+    namespace = "io.github.bynaki.moa"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.naki.popupinput"
+        applicationId = "io.github.bynaki.moa"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

@@ -1,4 +1,4 @@
-package com.naki.popupinput
+package io.github.bynaki.moa
 
 import android.content.res.Configuration
 import android.inputmethodservice.InputMethodService
@@ -14,7 +14,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TextView
-import com.naki.popupinput.hangul.DubeolsikKeyMap
+import io.github.bynaki.moa.hangul.DubeolsikKeyMap
 
 /**
  * 물리 키보드용 한글 입력기.
